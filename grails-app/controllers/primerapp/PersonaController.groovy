@@ -22,18 +22,23 @@ class PersonaController {
 
         switch (opciones) {
             case 'nombre':
-                resultadoBusqueda = Persona.findByNombre(filtro)
-                println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaNacimiento)
-                render(view: 'index', template: 'detalles', model: [personas: resultadoBusqueda])
+                if (resultadoBusqueda != null) {
+                    resultadoBusqueda = Persona.findByNombre(filtro)
+                    println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaDeNacimiento)
+                    render(view: 'persona/index', template: 'detalles', model: [personas: resultadoBusqueda])
+                } else {
+                    render(view: '/persona/error')
+                }
+
                 break
             case 'apellidoPaterno':
                 resultadoBusqueda = Persona.findAllByApellidoPaterno(filtro)
-                println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaNacimiento)
+                println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaDeNacimiento)
                 render(view: 'index', template: 'detalles', model: [personas: resultadoBusqueda])
                 break
             case 'fechaNacimiento':
                 resultadoBusqueda = Persona.findAllByFechaDeNacimiento()
-                println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaNacimiento)
+                println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaDeNacimiento)
                 render(view: 'index', template: 'detalles', model: [personas: resultadoBusqueda])
                 break
         }

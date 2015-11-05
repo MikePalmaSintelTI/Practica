@@ -8,7 +8,7 @@
 <head>
     <title>Persona</title>
 </head>
-<g:form controller="persona" action="buscar">
+<label>Buscar: </label><g:form controller="persona" action="buscar">
     <select id="opciones" name="combo" size="1" onchange="buscar">
         <option value="nombre">Nombre</option>
         <option value="apellidoPaterno">Apellido Paterno</option>
@@ -16,9 +16,7 @@
     </select>
     <g:textField name="filtro"/>
 </g:form>
-<g:buscar name="nombre" apellido="apellidoPaterno"/>
-<g:textField name="buscar" formaction="buscar"/>
-<br>
+<%--<g:buscar name="nombre" apellido="apellidoPaterno"/>--%>
 <br>
 <h3>Lista</h3>
 <table border="1">

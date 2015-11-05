@@ -30,7 +30,6 @@
         <g:datePicker name="fechaDeNacimiento" precision="day" hour="null" minute="null" years="${1915..2015}"></g:datePicker>
         <br>
         <br>
-        <g:remoteFunction controller="persona" action="edadPersona"/>
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         <button type="submit">Guardar</button>&nbsp&nbsp&nbsp&nbsp&nbsp
         <button type="reset">Limpiar Campos</button>
