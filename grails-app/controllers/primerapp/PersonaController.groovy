@@ -22,10 +22,10 @@ class PersonaController {
 
         switch (opciones) {
             case 'nombre':
+                resultadoBusqueda = Persona.findByNombre(filtro)
                 if (resultadoBusqueda != null) {
-                    resultadoBusqueda = Persona.findByNombre(filtro)
                     println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaDeNacimiento)
-                    render(view: 'persona/index', template: 'detalles', model: [personas: resultadoBusqueda])
+                    render(view: '/persona/index', template: 'detalles', model: [personas: resultadoBusqueda])
                 } else {
                     render(view: '/persona/error')
                 }
@@ -33,13 +33,21 @@ class PersonaController {
                 break
             case 'apellidoPaterno':
                 resultadoBusqueda = Persona.findAllByApellidoPaterno(filtro)
-                println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaDeNacimiento)
-                render(view: 'index', template: 'detalles', model: [personas: resultadoBusqueda])
+                if(resultadoBusqueda != null) {
+                    println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaDeNacimiento)
+                    render(view: '/persona/index', template: 'detalles', model: [personas: resultadoBusqueda])
+                } else {
+                    render(view: '/persona/error')
+                }
                 break
             case 'fechaNacimiento':
-                resultadoBusqueda = Persona.findAllByFechaDeNacimiento()
-                println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaDeNacimiento)
-                render(view: 'index', template: 'detalles', model: [personas: resultadoBusqueda])
+                resultadoBusqueda = Persona.findAllByFechaDeNacimiento(filtro)
+                if(resultadoBusqueda != null) {
+                    println("consulta: " + resultadoBusqueda.nombre + " " + resultadoBusqueda.apellidoPaterno + " " + resultadoBusqueda.apellidoMaterno + " " + resultadoBusqueda.fechaDeNacimiento)
+                    render(view: '/persona/index', template: 'detalles', model: [personas: resultadoBusqueda])
+                } else {
+                    render(view: '/persona/error')
+                }
                 break
         }
         println("Presionaste " + opciones)
